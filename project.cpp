@@ -1,6 +1,7 @@
 #include <iostream>
 
 using namespace std;
+int i,s;
 const int hl=50;
 const int pr=60;
 const int el=40;
@@ -13,168 +14,151 @@ int hly=hl*300;
 int prm=pr*30;
 int prt=pr*100;
 int pry=pr*300;
-struct date {
-    int dd,mm,yy;
+
+void addstud();
+void school_expense();
+void reciept();
+void ext();
+
+struct date{
+    int day;
+    int month;
+    int year;
 };
-struct student_reg
+
+struct student
 {
     int id;
-    string name;
+    char name[50];
     int age;
     int grade;
-    int sex;
-    date dop;
+    char sex;
+    date Dor;
+
 };
+student stud[10000];
 
-void stu_reg()
-{ int n,m,elnm,t,elnt,y,elny,hm,hlnm,hlnt,hlny,ht,k,pm,pt,pnm,pnt,pny,school_profit;
-
-    cout<<"------------------------------------------------------------------------\n";
-    cout<<"How many student do you want to register: ";
-    cin>>n;
-    student_reg stud[n];
-
-  for(int i=0; i<n; i++)
+void addstud()
 {
-    cout<<"student name: ";
+    int n,m,elnm,t,elnt,y,elny,hm,hlnm,hlnt,hlny,ht,k,pm,pt,pnm,pnt,pny,school_profit;
+    char an;
+//do{
+    int p,i;
+    cout<<"How many students do you wish to register:- "<<endl;
+    cin>>s;
+    for (int i=0; i<s; i++){
+    cout<<"Enter name:-"<<endl;
+    //cin.get(stud[i].name,50);
     cin>>stud[i].name;
-    cout<<"student age: ";
+    cout<<"Enter ID:-"<<endl;
+    cin>>stud[i].id;
+    cout<<"Enter Age:- "<<endl;
     cin>>stud[i].age;
-    cout<<"Grade to be registered in: ";
+    cout<<"Enter grade:-"<<endl;
     cin>>stud[i].grade;
+    cout<<"Enter gender(m or f):-"<<endl;
+    cin>>stud[i].sex;
+    a:
+    cout<<"Enter the date in dd/mm/yy format"<<endl;
+    cin>>stud[i].Dor.day;
+    cin>>stud[i].Dor.month;
+    cin>>stud[i].Dor.year;
+    if(stud[i].Dor.day>30 && stud[i].Dor.month>12){
 
+    cout<<"Please enter a valid date"<<endl;
+    goto a;
 }
+    cout<<"\nWhat is the form of payment"<<endl;
+    cout<<"1. Monthly"<<endl;
+    cout<<"2. Term"<<endl;
+    cout<<"3. Yearly"<<endl;
+    cin>>p;
+
+    switch(p)
+    {
+    case 1:
+        if (stud[i].grade>0 && stud[i].grade<9)
 
 
-for(int i=0; i<n; i++)
-{
-
-
-    if (stud[i].grade>0 && stud[i].grade<9)
-
-  { int b;
-      cout<<"-------------------------------------------------------------------";
-      cout<<endl<<"student "<<stud[i].name<<" monthly  wage would be "<<elm<<endl;
-      cout<<"How do you want to complete the payment "<<endl;
-      cout<<"1) monthly"<<endl<<"2) By term"<<endl<<"3) Yearly"<<endl;
-      cin>>b;
-
-      if (b==1)
       {
           cout<<"How many month? ";
           cin>>m;
           elnm=m*elm;
           cout<<"total would be: "<<elnm<<endl;
       }
-
-      else if (b==2)
-      {
-          cout<<"For How many terms do u want to pay";
-          cin>>t;
-          elnt=t*elt;
-          cout<<"total would be: "<<elnt<<endl;
-      }
-
-
-    else if (b==3)
-      {
-          cout<<"For choosing the yearly payment we would offer 10% discount offer"<<endl;
-         elny=ely-1200;
-          cout<<"your new total would be: "<<elny<<endl;
-      }
-      }
-
-      if(stud[i].grade>8 && stud[i].grade<11)
-      {
-          int c;
-      cout<<"-----------------------------------------------------------------";
-      cout<<endl<<"student "<<stud[i].name<<" monthly  wage would be "<<hlm<<endl;
-      cout<<"How do you want to complete the payment "<<endl;
-      cout<<"1) monthly"<<endl<<"2) By term"<<endl<<"3) Yearly"<<endl;
-      cin>>c;
-
-      if (c==1)
-           {
+      else if (stud[i].grade>8 && stud[i].grade<11)
+        {
           cout<<"How many month? ";
           cin>>hm;
           hlnm=hm*hlm;
           cout<<"total would be: "<<hlnm<<endl;
            }
-
-      else if (c==2)
-            {
-          cout<<"For How many terms do u want to pay";
-          cin>>ht;
-          hlnt=ht*hlt;
-          cout<<"total would be: "<<hlnt<<endl;
-            }
-
-
-    else if (c==3)
-         {
-          cout<<"For choosing the yearly payment we would offer 15% discount offer"<<endl;
-         hlny=hly-2250;
-          cout<<"your new total would be: "<<hlny<<endl;
-           }
-     }
-
-      if(stud[i].grade>10 && stud[i].grade<13)
-      {
-          int v;
-      cout<<"---------------------------------------------------------------------";
-      cout<<endl<<"student "<<stud[i].name<<" monthly  wage would be "<<prm<<endl;
-      cout<<"How do you want to complete the payment "<<endl;
-      cout<<"1) monthly"<<endl<<"2) By term"<<endl<<"3) Yearly"<<endl;
-      cin>>v;
-
-      if (v==1)
-           {
+      else if (stud[i].grade>10 && stud[i].grade<13)
+        {
           cout<<"How many month? ";
           cin>>pm;
           pnm=pm*prm;
           cout<<"total would be: "<<pnm<<endl;
            }
+        break;
+    case 2:
+        if (stud[i].grade>0 && stud[i].grade<9)
+        {
+        cout<<"For How many terms do u want to pay";
+          cin>>t;
+          elnt=t*elt;
+          cout<<"total would be: "<<elnt<<endl;
+        }
 
-      else if (v==2)
-            {
-          cout<<"For How many terms do u want to pay";
+        else if (stud[i].grade>8 && stud[i].grade<11)
+        {
+        cout<<"For How many terms do u want to pay";
+          cin>>ht;
+          hlnt=ht*hlt;
+          cout<<"total would be: "<<hlnt<<endl;
+        }
+        else if (stud[i].grade>10 && stud[i].grade<13)
+        {
+        cout<<"For How many terms do u want to pay";
           cin>>pt;
           pnt=pt*prt;
           cout<<"total would be: "<<pnt<<endl;
-            }
+        }
+        break;
+    case 3:
+        if (stud[i].grade>0 && stud[i].grade<9)
+        {
+         cout<<"For choosing the yearly payment we would offer 10% discount offer"<<endl;
+         elny=ely-1200;
+          cout<<"your new total would be: "<<elny<<endl;
+        }
 
-
-    else if (v==3)
-         {
-          cout<<"For choosing the yearly payment we would offer 20% discount offer"<<endl;
+        else if (stud[i].grade>8 && stud[i].grade<11)
+        {
+         cout<<"For choosing the yearly payment we would offer 15% discount offer"<<endl;
+         hlny=hly-2250;
+          cout<<"your new total would be: "<<hlny<<endl;
+        }
+        else if (stud[i].grade>10 && stud[i].grade<13)
+        {
+         cout<<"For choosing the yearly payment we would offer 20% discount offer"<<endl;
          pny=pry-3600;
           cout<<"your new total would be: "<<pny<<endl;
-           }
-     }
+          cout<<"press '4' to add another student";
+        }
+        break;
 
+    }
+}
+system("pause");
+system("cls");
+    /*i+1;
+    cout<<"do you want to add another student"<<endl;
+    cin>>an;*/
 
-
-
-
-  }
-
-
+//}while(an='y');
 }
 
-
-
-
-
-void payment_info()
-{
-  cout<<"---------------------------------------------------------------------------------"<<endl;
-  cout<<"we have different payment and payment structure for the level of education we give"<<endl;
-  cout<<"They are the following :"<<endl;
-  cout<<"for elementary school(from grade 1-8) our price is 1200 birr per month"<<endl;
-  cout<<"For high school(from grade 9-10) our price is 1500 birr per month"<<endl;
-  cout<<"For preparatory(from grade 11-12 our price is 1800 birr per month)"<<endl;
-
-}
 void school_expense()
 {
     char b;
@@ -214,68 +198,71 @@ void school_expense()
       cout<<"******************************************************************************\n";
       total=eppy+hppy+pppy+rent+sts+qt;
       cout<<"Your total annual expense is: "<<total;
+      system("pause");
+      system("cls");
 
 
 
 }
-void reicept()
+
+void reciept(){
+int id;
+cout<<"Enter the id of the student"<<endl;
+cin>>id;
+for(int i=0; i<s; i++)
 {
-    int n;
-    student_reg stud[n];
-
-  for(int i=0; i<n; i++)
+if(id == stud[i].id)
 {
-    cout<<"student name: ";
-    cout<<stud[i].name;
-    cout<<"student age: ";
-    cout<<stud[i].age;
-    cout<<"Grade  registered in: ";
-    cout<<stud[i].grade;
-
+	cout<<"Date of registration"<<stud[i].Dor.day<<" "<<stud[i].Dor.month<<" "<<stud[i].Dor.year<<endl;
+	cout<<"\nPaid----Registered";
+	cout<<"\nName--"<<stud[i].name<<endl;
+	cout<<"Age--"<<stud[i].age<<endl;
+	cout<<"Gender--"<<stud[i].sex<<endl;
+	cout<<"Grade--"<<stud[i].grade<<endl;
+	cout<<"Date of registration--"<<stud[i].Dor.day<<" "<<stud[i].Dor.month<<" "<<stud[i].Dor.year<<endl;
+	}
+	else
+cout<<"Please register ";	
+}
+system("pause");
+system("cls");
 
 }
-
-
-
-
+void ext(){
+cout<<"Thanks for using our billing system!"<<endl;
+system("pause");
+system("cls");
 }
+
 
 
 
 int main()
-{  int menu;
- do{
-  cout<<"---------------------------------------------------------------------------------------------------------------";
-  cout<<"\nwelcome to the school billing system\n";
-  cout<<"\n What do you want to perform: \n 1) register students\n 2) calculate school expenses\n 3) reicept\n 4)quit\n";
-  cin>>menu;
-  if(menu==1)
-  {
-      stu_reg();
-  }
-  else if (menu==2)
-  {
-      school_expense();
-  }
-  else if(menu==3)
-  {
-      reicept();
- //reicept isnt workin
-  }
-   else if(menu==4)
-   {
-       cout<<"Thank you for choosing our program we would like to see you back again!\n";
-       cout<<"---------------------------------------------------------------------------";
-   }
- } while(menu!=4);
+{
+	int k;
+	do{
+	cout<<"  \n\n\n       WELCOME TO SCHOOL's BILLING SYSTEM !!!!";
+	cout<<"  \n\n\n       This program provides you with the following services---------"<<endl;
+	cout<<"  \n\n\n         Press 1 to add a student"<<endl<<"         Press 2 to calculate and view the school expenses"<<endl<<"         Press 3 to have a reciept"<<endl<<"         Press 4 to exit"<<endl;
+	cin>>k;
+	switch(k){
+		case 1:
+			addstud();
+			break;
+		case 2:
+			school_expense();
+			break;
+		case 3:
+		    reciept();
+		    break;
+        case 4:
+            ext();
+            break;
 
 
-
-
-
-
-
-  }
-
+//addstud();
+	}
+	}while(k!=4);
+}
 
 
