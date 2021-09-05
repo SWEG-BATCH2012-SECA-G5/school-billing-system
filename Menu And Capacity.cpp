@@ -112,8 +112,4 @@ else{
 
 }
 
-int main()
-{
-menu();
 
-}
